@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="gn-expander">
+    <output-path>$PROJECT_DIR$/out/artifacts/gn_expander</output-path>
+    <root id="archive" name="gn-expander.jar">
+      <element id="module-output" name="gate-nouveau-expander" />
+    </root>
+  </artifact>
+</component>
