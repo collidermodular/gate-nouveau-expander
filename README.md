@@ -51,7 +51,7 @@ if (expander.hasNext()) {
 expander.setSimpleStep(0, true, 0.4); // index, enabled, gate width
 expander.setAccentStep(0, 0.6); // index, gate width
 expander.setTiedSteps(0, 4, 0.5); // start index, end index, end gate width
-expander.setSubdividedSTep(0, 6, new boolean[] { true, false, true, true, true, false, true, false });
+expander.setSubdividedStep(0, 6, new boolean[] { true, false, true, true, true, false, true, false });
 ```
 
 ### Sending Commands
