@@ -57,5 +57,5 @@ expander.setSubdividedSTep(0, 6, new boolean[] { true, false, true, true, true, 
 ### Sending Commands
 ```java
 expander.setTrackLength(60);
-expander.setTrackDivision(4); // value is PPQN; 4 = 1/64th note
+expander.setTrackDivision(4); // value is PPQN; 4 = 1/16th note
 ```
