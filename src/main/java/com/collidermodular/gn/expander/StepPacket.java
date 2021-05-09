@@ -23,8 +23,10 @@ public class StepPacket extends Packet {
 
   public byte[] toByteArray() {
     byte[] bytes = new byte[8];
-    bytes[0] = twoToOneBytes((byte) type.ordinal(), (byte)(enabled ? 1 : 0));
-    bytes[1] = (byte)index;
+
+    // header byte is command. Values 0-127 are implicitly "set step" command
+    bytes[0] = (byte)index;
+    bytes[1] = twoToOneBytes((byte) type.ordinal(), (byte)(enabled ? 1 : 0));
 
     byte width = (byte)Math.round(gateWidth / (1/14.0));
     bytes[2] = twoToOneBytes(width, (byte)0);

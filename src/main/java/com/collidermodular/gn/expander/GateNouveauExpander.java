@@ -13,6 +13,8 @@ public class GateNouveauExpander {
     this.queue.clear();
   }
 
+  // -- step commands --
+
   public void setSimpleStep(int index, boolean enabled, double gateWidth) {
     this.queue.add(new StepPacket(index, StepType.SIMPLE, enabled, gateWidth));
   }
@@ -36,6 +38,16 @@ public class GateNouveauExpander {
   public void setSubdividedSTep(int index, int length, boolean[] microSteps) {
     if (length > 8) { throw new IllegalArgumentException("Length must be 8 or less"); }
     this.queue.add(new StepPacket(index, StepType.SUBDIV, true, 0.0, microSteps, length));
+  }
+
+  // -- setting commands --
+
+  public void setTrackLength(int length) {
+    this.queue.add(new TrackLengthPacket(length));
+  }
+
+  public void setTrackDivision(int ppqn) {
+    this.queue.add(new TrackDivisionPacket(ppqn));
   }
 
   public boolean hasNext() {
