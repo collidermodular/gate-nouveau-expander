@@ -39,7 +39,7 @@ expander = new GateNouveauExpander();
 4. Add to `ProcessSample()`:
 ```java
 if (expander.hasNext()) {
-  // NOTE: `trackIndex` here will need to be set the module
+  // NOTE: `trackIndex` here will need to be set by the module
   polyOutputJack1.SetPolyValue(trackIndex, expander.nextDouble());  
 }
 ```
