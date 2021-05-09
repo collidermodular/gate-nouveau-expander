@@ -3,7 +3,7 @@ package com.collidermodular.gn.expander;
 import java.util.LinkedList;
 
 public class GateNouveauExpander {
-  private final LinkedList<Packet> queue;
+  protected final LinkedList<Packet> queue;
 
   public GateNouveauExpander() {
     this.queue = new LinkedList<>();
@@ -35,7 +35,7 @@ public class GateNouveauExpander {
     }
   }
 
-  public void setSubdividedSTep(int index, int length, boolean[] microSteps) {
+  public void setSubdividedStep(int index, int length, boolean[] microSteps) {
     if (length > 8) { throw new IllegalArgumentException("Length must be 8 or less"); }
     this.queue.add(new StepPacket(index, StepType.SUBDIV, true, 0.0, microSteps, length));
   }
@@ -61,4 +61,5 @@ public class GateNouveauExpander {
     }
     return 0;
   }
+
 }
