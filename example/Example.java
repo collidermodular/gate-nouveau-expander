@@ -31,7 +31,7 @@ public GNExampe( long moduleID, VoltageObjects voltageObjects )
 
 
   canBeBypassed = false;
-  SetSkin( "aa8f9483297646e18728f079f168c03a" );
+  SetSkin( "3bbc98b7953b43a0a262ec411580df3d" );
 }
 
 void InitializeControls()
@@ -73,7 +73,7 @@ void InitializeControls()
   channelKnob.SetPosition( 29, 307 );
   channelKnob.SetSize( 34, 34 );
   channelKnob.SetSkin( "Plastic White" );
-  channelKnob.SetRange( 0, 15, 0, false, 0 );
+  channelKnob.SetRange( 0, 15, 0, false, 16 );
   channelKnob.SetKnobParams( 215, 145 );
   channelKnob.DisplayValueInPercent( false );
   channelKnob.SetKnobAdjustsRing( true );
