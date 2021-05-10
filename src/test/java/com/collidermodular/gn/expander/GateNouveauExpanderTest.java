@@ -21,4 +21,22 @@ class GateNouveauExpanderTest {
     assertEquals(StepType.TIE_TAIL, packet3.type);
     assertEquals(0.66, packet3.gateWidth);
   }
+
+  @Test
+  void nextDouble() {
+    GateNouveauExpander expander = new GateNouveauExpander();
+    expander.setSimpleStep(0, true, 0.5);
+    expander.setSimpleStep(1, true, 0.5);
+    expander.setSimpleStep(2, true, 0.5);
+
+    assertEquals(3, expander.queue.size());
+    expander.nextDouble();
+    assertEquals(2, expander.queue.size());
+    expander.nextDouble();
+    assertEquals(1, expander.queue.size());
+    expander.nextDouble();
+    assertEquals(0, expander.queue.size());
+
+    expander.nextDouble(); // verify it doesn't throw
+  }
 }

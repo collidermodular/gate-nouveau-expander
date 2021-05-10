@@ -31,7 +31,7 @@ public GNExampe( long moduleID, VoltageObjects voltageObjects )
 
 
   canBeBypassed = false;
-  SetSkin( "01ff16a3cb4c4adf918624f31d674e1f" );
+  SetSkin( "aa8f9483297646e18728f079f168c03a" );
 }
 
 void InitializeControls()
@@ -147,6 +147,48 @@ void InitializeControls()
   textLabel3.SetHasCustomTextHoverColor( false );
   textLabel3.SetTextHoverColor( new Color( 0, 0, 0, 255 ) );
   textLabel3.SetFont( "<Sans-Serif>", 14, false, false );
+
+  textLabel4 = new VoltageLabel( "textLabel4", "textLabel4", this, "Channel" );
+  AddComponent( textLabel4 );
+  textLabel4.SetWantsMouseNotifications( false );
+  textLabel4.SetPosition( 10, 283 );
+  textLabel4.SetSize( 67, 25 );
+  textLabel4.SetEditable( false, false );
+  textLabel4.SetJustificationFlags( VoltageLabel.Justification.HorizCentered );
+  textLabel4.SetJustificationFlags( VoltageLabel.Justification.VertCentered );
+  textLabel4.SetColor( new Color( 255, 255, 255, 255 ) );
+  textLabel4.SetBkColor( new Color( 65, 65, 65, 0 ) );
+  textLabel4.SetBorderColor( new Color( 0, 0, 0, 0 ) );
+  textLabel4.SetBorderSize( 1 );
+  textLabel4.SetMultiLineEdit( false );
+  textLabel4.SetIsNumberEditor( false );
+  textLabel4.SetNumberEditorRange( 0, 100 );
+  textLabel4.SetNumberEditorInterval( 1 );
+  textLabel4.SetNumberEditorUsesMouseWheel( false );
+  textLabel4.SetHasCustomTextHoverColor( false );
+  textLabel4.SetTextHoverColor( new Color( 0, 0, 0, 255 ) );
+  textLabel4.SetFont( "<Sans-Serif>", 14, false, false );
+
+  textLabel5 = new VoltageLabel( "textLabel5", "textLabel5", this, "Out" );
+  AddComponent( textLabel5 );
+  textLabel5.SetWantsMouseNotifications( false );
+  textLabel5.SetPosition( 80, 283 );
+  textLabel5.SetSize( 41, 25 );
+  textLabel5.SetEditable( false, false );
+  textLabel5.SetJustificationFlags( VoltageLabel.Justification.HorizCentered );
+  textLabel5.SetJustificationFlags( VoltageLabel.Justification.VertCentered );
+  textLabel5.SetColor( new Color( 255, 255, 255, 255 ) );
+  textLabel5.SetBkColor( new Color( 65, 65, 65, 0 ) );
+  textLabel5.SetBorderColor( new Color( 0, 0, 0, 0 ) );
+  textLabel5.SetBorderSize( 1 );
+  textLabel5.SetMultiLineEdit( false );
+  textLabel5.SetIsNumberEditor( false );
+  textLabel5.SetNumberEditorRange( 0, 100 );
+  textLabel5.SetNumberEditorInterval( 1 );
+  textLabel5.SetNumberEditorUsesMouseWheel( false );
+  textLabel5.SetHasCustomTextHoverColor( false );
+  textLabel5.SetTextHoverColor( new Color( 0, 0, 0, 255 ) );
+  textLabel5.SetFont( "<Sans-Serif>", 14, false, false );
 }
 
 
@@ -426,10 +468,7 @@ public void ProcessSample()
 {
   //[user-ProcessSample]   Add your own process-sampling code here
 
-  if (expander.hasNext()) {
-    double value = expander.nextDouble();
-    polyOutputJack1.SetPolyValue(channel, value); 
-  }
+  polyOutputJack1.SetPolyValue(channel, expander.nextDouble());
 
   //[/user-ProcessSample]
 }
@@ -564,6 +603,8 @@ public void SetStateInformationForVariations(byte[] stateInfo)
 
 
 // Auto-generated variables
+private VoltageLabel textLabel5;
+private VoltageLabel textLabel4;
 private VoltageLabel textLabel3;
 private VoltageLabel textLabel2;
 private VoltageLabel textLabel1;
@@ -578,7 +619,6 @@ private VoltageButton button1;
 
 GateNouveauExpander expander;
 int channel = 0;
-
 
 //[/user-code-and-variables]
 }

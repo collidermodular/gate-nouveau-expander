@@ -5,12 +5,12 @@ import java.util.LinkedList;
 public class GateNouveauExpander {
   protected final LinkedList<Packet> queue;
 
+  // VoltagePolyJack seems to (incorrectly?) hang on to the last value, so tell the
+  // consumer there is a message left and return 0 after queue is empty 🤪
+  private boolean returnZero;
+
   public GateNouveauExpander() {
     this.queue = new LinkedList<>();
-  }
-
-  public void reset() {
-    this.queue.clear();
   }
 
   // -- step commands --
@@ -50,11 +50,16 @@ public class GateNouveauExpander {
     this.queue.add(new TrackDivisionPacket(ppqn));
   }
 
-  public boolean hasNext() {
-    return this.queue.size() > 0;
+  // -- queue management --
+
+  public void reset() {
+    this.queue.clear();
   }
+  public int size() { return this.queue.size(); }
 
   public double nextDouble() {
+    if (this.queue.size() == 0) { return 0; }
+
     Packet packet = this.queue.poll();
     if (packet != null) {
       return packet.toDouble();
