@@ -31,7 +31,7 @@ public GNExampe( long moduleID, VoltageObjects voltageObjects )
 
 
   canBeBypassed = false;
-  SetSkin( "aa8f9483297646e18728f079f168c03a" );
+  SetSkin( "52634e090be9450abf293b685afceed2" );
 }
 
 void InitializeControls()
@@ -73,17 +73,10 @@ void InitializeControls()
   channelKnob.SetPosition( 29, 307 );
   channelKnob.SetSize( 34, 34 );
   channelKnob.SetSkin( "Plastic White" );
-  channelKnob.SetRange( 0, 15, 0, false, 0 );
+  channelKnob.SetRange( 0, 15, 0, false, 16 );
   channelKnob.SetKnobParams( 215, 145 );
   channelKnob.DisplayValueInPercent( false );
   channelKnob.SetKnobAdjustsRing( true );
-
-  polyOutputJack1 = new VoltagePolyJack( "polyOutputJack1", "polyOutputJack1", this, JackType.JackType_PolyOutput );
-  AddComponent( polyOutputJack1 );
-  polyOutputJack1.SetWantsMouseNotifications( false );
-  polyOutputJack1.SetPosition( 89, 313 );
-  polyOutputJack1.SetSize( 25, 25 );
-  polyOutputJack1.SetSkin( "Poly Jack Straight" );
 
   textLabel1 = new VoltageLabel( "textLabel1", "textLabel1", this, "Create Simple Step" );
   AddComponent( textLabel1 );
@@ -189,6 +182,13 @@ void InitializeControls()
   textLabel5.SetHasCustomTextHoverColor( false );
   textLabel5.SetTextHoverColor( new Color( 0, 0, 0, 255 ) );
   textLabel5.SetFont( "<Sans-Serif>", 14, false, false );
+
+  outputJack1 = new VoltageAudioJack( "outputJack1", "outputJack1", this, JackType.JackType_AudioOutput );
+  AddComponent( outputJack1 );
+  outputJack1.SetWantsMouseNotifications( false );
+  outputJack1.SetPosition( 82, 304 );
+  outputJack1.SetSize( 37, 37 );
+  outputJack1.SetSkin( "Jack Straight" );
 }
 
 
@@ -255,12 +255,14 @@ public boolean Notify( VoltageComponent component, ModuleNotifications notificat
   
     case Button_Changed:   // doubleValue is the new button/toggle button value
     {
+      int channel = (int)Math.round(channelKnob.GetValue());
+      
       if (component == button1) {
-        expander.setSimpleStep(0, true, 0.33);
+        expander.setSimpleStep(channel, -1, 0, true, 0.33);
       } else if (component == button2) {
-        expander.setAccentStep(1, 1.0);
+        expander.setAccentStep(channel, -1, 1, 1.0);
       } else if (component == button3) {
-        expander.setTiedSteps(2, 4, 0.5);
+        expander.setTiedSteps(channel, -1, 2, 4, 0.5);
       }
     }
     break;
@@ -468,7 +470,7 @@ public void ProcessSample()
 {
   //[user-ProcessSample]   Add your own process-sampling code here
 
-  polyOutputJack1.SetPolyValue(channel, expander.nextDouble());
+  outputJack1.SetValue(expander.nextDouble());
 
   //[/user-ProcessSample]
 }
@@ -603,12 +605,12 @@ public void SetStateInformationForVariations(byte[] stateInfo)
 
 
 // Auto-generated variables
+private VoltageAudioJack outputJack1;
 private VoltageLabel textLabel5;
 private VoltageLabel textLabel4;
 private VoltageLabel textLabel3;
 private VoltageLabel textLabel2;
 private VoltageLabel textLabel1;
-private VoltagePolyJack polyOutputJack1;
 private VoltageKnob channelKnob;
 private VoltageButton button3;
 private VoltageButton button2;

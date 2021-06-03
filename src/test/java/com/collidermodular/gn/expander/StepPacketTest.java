@@ -8,7 +8,7 @@ class StepPacketTest {
 
   @Test
   void toByteArray() {
-    StepPacket packet = new StepPacket(6, StepType.SIMPLE, true, 0.5);
+    StepPacket packet = new StepPacket(0, -1, 6, StepType.SIMPLE, true, 0.5);
     byte[] bytes = packet.toByteArray();
 
     assertEquals(6, bytes[0]);

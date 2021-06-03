@@ -40,18 +40,28 @@ expander = new GateNouveauExpander();
 ```java
 if (expander.hasNext()) {
   // NOTE: `trackIndex` here will need to be set by the module
-  polyOutputJack1.SetPolyValue(trackIndex, expander.nextDouble());  
+  outputJack1.SetValue(trackIndex, expander.nextDouble());  
 }
 ```
 
 ## Usage
 
 ### Creating Steps
+This will create steps on the currently selected track and pattern.
 ```java
 expander.setSimpleStep(0, true, 0.4); // index, enabled, gate width
 expander.setAccentStep(0, 0.6); // index, gate width
 expander.setTiedSteps(0, 4, 0.5); // start index, end index, end gate width
 expander.setSubdividedStep(0, 6, new boolean[] { true, false, true, true, true, false, true, false });
+```
+
+### Creating Steps (specific track/pattern)
+This will create steps on track 5, pattern 8;
+```java
+expander.setSimpleStep(6, 9, 0, true, 0.4); // index, enabled, gate width
+expander.setAccentStep(6, 9, 0, 0.6); // index, gate width
+expander.setTiedSteps(6, 9 0, 4, 0.5); // start index, end index, end gate width
+expander.setSubdividedStep(6, 9 0, 6, new boolean[] { true, false, true, true, true, false, true, false });
 ```
 
 ### Sending Commands
